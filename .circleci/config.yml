@@ -1,0 +1,30 @@
+
+version: 2.1
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/node:22.14
+    steps:
+      - checkout
+
+      - run:
+          name: Install backend dependencies
+          command: cd app/backend && npm ci
+
+      - run:
+          name: Check backend JavaScript syntax
+          command: cd app/backend && node --check server.js
+
+      - run:
+          name: Install frontend dependencies
+          command: cd app/frontend && npm ci
+
+      - run:
+          name: Build React frontend
+          command: cd app/frontend && npm run build
+
+workflows:
+  taskflow-ci:
+    jobs:
+      - build-and-test
