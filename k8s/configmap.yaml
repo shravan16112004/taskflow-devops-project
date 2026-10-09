@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: taskflow-config
+  namespace: taskflow
+data:
+  DB_HOST: postgres
+  DB_PORT: "5432"
+  DB_NAME: todoapp
+  DB_USER: todoapp
+  PORT: "5000"
